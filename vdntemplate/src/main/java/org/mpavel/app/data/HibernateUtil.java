@@ -30,14 +30,11 @@ import com.google.inject.Inject;
  * @author mpavel
  * 
  */
-public class DatabaseUtil {
+public class HibernateUtil {
 	private final static ApplicationLogger logger = new ApplicationLogger(
-			DatabaseUtil.class);
+			HibernateUtil.class);
 	private final static SessionFactory sessionFactory;
 	
-	@Inject
-	private static ApplicationDataInitializer dataInitializer;
-
 	static {
 		try {
 			logger.trace("Initializing HibernateUtil");
@@ -54,7 +51,8 @@ public class DatabaseUtil {
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
 			logger.trace("Initializing authentication and authorization data");
-			dataInitializer.insertAuthData();
+			//ApplicationDataInitializer dataInitializer = new ApplicationDataInitializer();
+			//dataInitializer.insertAuthData();
 		} catch (Throwable e) {
 			logger.error(e);
 			throw new ExceptionInInitializerError(e);

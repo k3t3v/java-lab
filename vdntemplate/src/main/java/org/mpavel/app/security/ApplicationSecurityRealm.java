@@ -33,7 +33,7 @@ import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.mpavel.app.data.DatabaseUtil;
+import org.mpavel.app.data.HibernateUtil;
 import org.mpavel.app.domain.Account;
 import org.mpavel.app.domain.Permission;
 import org.mpavel.app.domain.Role;
@@ -125,7 +125,7 @@ public class ApplicationSecurityRealm extends JdbcRealm
 	{
 		logger.executionTrace();
 
-		final Session session = DatabaseUtil.getSessionFactory().getCurrentSession();
+		final Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		final Query query = session.createSQLQuery(
 				"select * from Account x where x.username = :zzz")
@@ -139,7 +139,7 @@ public class ApplicationSecurityRealm extends JdbcRealm
 	{
 		logger.executionTrace();
 
-		final Session session = DatabaseUtil.getSessionFactory().getCurrentSession();
+		final Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		final Query query = session.createSQLQuery(
 				"select * from Role x where x.roleName = :zzz")

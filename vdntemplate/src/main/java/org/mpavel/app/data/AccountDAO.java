@@ -28,17 +28,28 @@ import org.mpavel.app.domain.Account;
 import org.mpavel.app.domain.Role;
 import org.mpavel.app.utils.ApplicationLogger;
 
+import com.google.inject.Inject;
+import com.google.inject.TypeLiteral;
+
 /**
  * I...
  * 
  * @author mpavel
  * 
  */
-public class AccountDAO {
+public class AccountDAO extends HibernateGenericDAO<Account> {
 
 	private final static ApplicationLogger logger = new ApplicationLogger(
 			AccountDAO.class);
-	
+
+	/**
+	 * @param type
+	 */
+	@Inject
+	public AccountDAO(TypeLiteral<Account> type) {
+		super(type);
+	}
+
 	public void insertAccount(Session session, String username,
 			String password, Set<Role> roles) {
 		logger.executionTrace();
@@ -66,7 +77,7 @@ public class AccountDAO {
 	public static boolean SaveAccount(Account account) {
 		logger.executionTrace();
 
-		final Session session = DatabaseUtil.getSessionFactory()
+		final Session session = HibernateUtil.getSessionFactory()
 				.getCurrentSession();
 		final Account existingAccount = getAccount(session,
 				account.getUsername());

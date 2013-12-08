@@ -26,16 +26,25 @@ import org.mpavel.app.domain.Permission;
 import org.mpavel.app.domain.Role;
 import org.mpavel.app.utils.ApplicationLogger;
 
+import com.google.inject.TypeLiteral;
+
 /**
  * I...
  * 
  * @author mpavel
  * 
  */
-public class RoleDAO {
+public class RoleDAO extends HibernateGenericDAO<Role> {
 
 	private final static ApplicationLogger logger = new ApplicationLogger(
 			RoleDAO.class);
+	
+	/**
+	 * @param type
+	 */
+	public RoleDAO(TypeLiteral<Role> type) {
+		super(type);
+	}
 
 	public Role insertRole(Session session, String roleName,
 			Set<Permission> permissions) {

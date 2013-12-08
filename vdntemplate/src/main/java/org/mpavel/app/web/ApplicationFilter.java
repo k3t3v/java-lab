@@ -29,6 +29,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.mpavel.app.data.DataModule;
 import org.mpavel.app.security.ApplicationSecurityModule;
 import org.mpavel.app.security.ApplicationSecurityRealm;
 import org.mpavel.app.utils.ApplicationLogger;
@@ -49,6 +50,7 @@ public class ApplicationFilter extends GuiceFilter
 	private static final ApplicationLogger logger = new ApplicationLogger(ApplicationFilter.class);
 	private static Injector applicationInjector;
 	private static Injector securityInjector;
+	private static Injector dataInjector;
 
 	public static Injector getApplicationInjector()
 	{
@@ -60,6 +62,12 @@ public class ApplicationFilter extends GuiceFilter
 	{
 		logger.executionTrace();
 		return securityInjector;
+	}
+	
+	public static Injector getDataInjector()
+	{
+		logger.executionTrace();
+		return dataInjector;
 	}
 
 	@Override
@@ -80,6 +88,9 @@ public class ApplicationFilter extends GuiceFilter
 
 		if (securityInjector != null)
 			throw new ServletException("security injector already created");
+		
+		if (dataInjector != null)
+			throw new ServletException("data injector already created");
 
 		 final Realm realm = new ApplicationSecurityRealm();
 		 final SecurityManager securityManager = new DefaultSecurityManager(realm);
@@ -87,6 +98,7 @@ public class ApplicationFilter extends GuiceFilter
 		
 		applicationInjector = Guice.createInjector(new ApplicationModule());
 		securityInjector = Guice.createInjector(new ApplicationSecurityModule());
+		dataInjector = Guice.createInjector(new DataModule());
 
 		super.init(filterConfig);
 	}

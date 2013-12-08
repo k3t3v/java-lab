@@ -47,7 +47,7 @@ public class ApplicationDataInitializer {
 	
 	public void insertAuthData() {
 		logger.executionTrace();
-		final Session session = DatabaseUtil.getSessionFactory().getCurrentSession();
+		final Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		
 		try {
 			Set<Permission> permissions = new HashSet<Permission>();

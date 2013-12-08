@@ -26,26 +26,26 @@ import com.vaadin.ui.UI;
 
 /**
  * I...
- *
+ * 
  * @author mpavel
- *
+ * 
  */
-public class ApplicationModule extends ServletModule
-{
-	private static final ApplicationLogger logger = new ApplicationLogger(ApplicationModule.class);
-	
+public class ApplicationModule extends ServletModule {
+	private static final ApplicationLogger logger = new ApplicationLogger(
+			ApplicationModule.class);
+
 	@Override
-	protected void configureServlets()
-	{
+	protected void configureServlets() {
 		logger.executionTrace();
 		serve("/*").with(ApplicationServlet.class);
-		bind(String.class).annotatedWith(Names.named("title")).toInstance("Vaadin Application");
-		bind(String.class).annotatedWith(Names.named("version")).toInstance("<b>Vaadin 7.1.8</b>");
+		bind(String.class).annotatedWith(Names.named("title")).toInstance(
+				"Vaadin Application");
+		bind(String.class).annotatedWith(Names.named("version")).toInstance(
+				"<b>Vaadin 7.1.8</b>");
 	}
 
 	@Provides
-	private Class<? extends UI> provideUIClass()
-	{
+	private Class<? extends UI> provideUIClass() {
 		logger.executionTrace();
 		return ApplicationUI.class;
 	}

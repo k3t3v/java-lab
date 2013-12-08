@@ -24,19 +24,27 @@ import org.hibernate.Session;
 import org.mpavel.app.domain.Permission;
 import org.mpavel.app.utils.ApplicationLogger;
 
+import com.google.inject.TypeLiteral;
+
 /**
  * I...
  * 
  * @author mpavel
  * 
  */
-public class PermissionDAO {
+public class PermissionDAO extends HibernateGenericDAO<Permission> {
 
 	private final static ApplicationLogger logger = new ApplicationLogger(
 			PermissionDAO.class);
 
-	public Permission insertPermission(Session session,
-			String permissionName) {
+	/**
+	 * @param type
+	 */
+	public PermissionDAO(TypeLiteral<Permission> type) {
+		super(type);
+	}
+
+	public Permission insertPermission(Session session, String permissionName) {
 		logger.executionTrace();
 
 		final Query query = session

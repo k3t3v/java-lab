@@ -16,7 +16,7 @@
  */
 package org.mpavel.app;
 
-import org.mpavel.app.data.DatabaseUtil;
+import org.mpavel.app.data.HibernateUtil;
 import org.mpavel.app.security.ApplicationSecurity;
 import org.mpavel.app.utils.ApplicationLogger;
 import org.mpavel.app.views.ApplicationView;
@@ -56,7 +56,7 @@ public class ApplicationUI extends UI {
     	public void init(VaadinRequest request)
     	{
     		logger.executionTrace();
-    		DatabaseUtil.getSessionFactory(); // Initialize...
+    		HibernateUtil.getSessionFactory(); // Initialize...
 
     		final Navigator navigator = new Navigator(this, this);
     		setNavigator(navigator);
