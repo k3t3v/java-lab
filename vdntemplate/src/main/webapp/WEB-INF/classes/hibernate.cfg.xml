@@ -15,9 +15,9 @@
 		<property name="show_sql">true</property>
 		
 		<!-- Security Entities -->
-		<mapping class="org.mpavel.app.model.Account" />
-		<mapping class="org.mpavel.app.model.Role" />
-		<mapping class="org.mpavel.app.model.Permission" />
+		<mapping class="org.mpavel.app.domain.Account" />
+		<mapping class="org.mpavel.app.domain.Role" />
+		<mapping class="org.mpavel.app.domain.Permission" />
 				
 	</session-factory>
 </hibernate-configuration>
