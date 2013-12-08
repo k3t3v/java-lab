@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.Session;
+import org.mpavel.app.domain.Account;
 import org.mpavel.app.domain.Permission;
 import org.mpavel.app.domain.Role;
 import org.mpavel.app.utils.ApplicationLogger;
@@ -36,14 +37,20 @@ public class ApplicationDataInitializer {
 	
 	private final static ApplicationLogger logger = new ApplicationLogger(ApplicationDataInitializer.class);
 	
-	@Inject 
-	private AccountDAO accountDAO;
+	private final GenericDAO<Account> accountDAO;
 	
-	@Inject
-	private RoleDAO roleDAO;
+	private final GenericDAO<Role> roleDAO;
 	
-	@Inject
-	private PermissionDAO permissionDAO;
+	private final GenericDAO<Permission> permissionDAO;
+	
+	/**
+	 * 
+	 */
+	public ApplicationDataInitializer(GenericDAO<Account> accountDAO, GenericDAO<Role> roleDAO, GenericDAO<Permission> permissionDAO) {
+		this.accountDAO = accountDAO;
+		this.roleDAO = roleDAO;
+		this.permissionDAO = permissionDAO;
+	}
 	
 	public void insertAuthData() {
 		logger.executionTrace();
