@@ -51,8 +51,7 @@ public class HibernateUtil {
 			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
 			logger.trace("Initializing authentication and authorization data");
-			//ApplicationDataInitializer dataInitializer = new ApplicationDataInitializer();
-			//dataInitializer.insertAuthData();
+			// ApplicationDataInitializer.insertAuthData();
 		} catch (Throwable e) {
 			logger.error(e);
 			throw new ExceptionInInitializerError(e);
