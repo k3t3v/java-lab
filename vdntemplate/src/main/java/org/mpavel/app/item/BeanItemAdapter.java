@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.mpavel.app.model.PersistentObject;
+import org.mpavel.app.domain.PersistentObject;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;

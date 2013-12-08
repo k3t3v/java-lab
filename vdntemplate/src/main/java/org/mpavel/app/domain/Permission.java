@@ -14,7 +14,7 @@
  * limitations under the License.
  * 
  */
-package org.mpavel.app.model;
+package org.mpavel.app.domain;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,8 +23,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.UniqueConstraint;
 
@@ -40,22 +38,21 @@ import org.hibernate.annotations.GenericGenerator;
  *
  */
 @Entity
-@Table(name = "Role", uniqueConstraints = { @UniqueConstraint(columnNames = "roleName") })
-public class Role
+@Table(name = "Permission", uniqueConstraints = { @UniqueConstraint(columnNames = "permissionName") })
+public class Permission
 {
 	private String id;
-	private String roleName;
+	private String permissionName;
 	private String description;
-	private Set<Account> accounts = new HashSet<Account>(0);
-	private Set<Permission> permissions = new HashSet<Permission>(0);
+	private Set<Role> roles = new HashSet<Role>(0);
 
-	public Role()
+	public Permission()
 	{
 	}
 
-	public Role(String roleName)
+	public Permission(String permissionName)
 	{
-		this.roleName = roleName;
+		this.permissionName = permissionName;
 	}
 
 	@Id
@@ -72,15 +69,15 @@ public class Role
 		this.id = id;
 	}
 
-	@Column(name = "roleName", unique = true, nullable = false)
-	public String getRoleName()
+	@Column(name = "permissionName", unique = true, nullable = false)
+	public String getPermissionName()
 	{
-		return roleName;
+		return permissionName;
 	}
 
-	public void setRoleName(String roleName)
+	public void setPermissionName(String permissionName)
 	{
-		this.roleName = roleName;
+		this.permissionName = permissionName;
 	}
 
 	@Column(name = "description", nullable = true)
@@ -94,28 +91,14 @@ public class Role
 		this.description = description;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-	public Set<Account> getAccounts()
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "permissions")
+	public Set<Role> getRoles()
 	{
-		return accounts;
+		return roles;
 	}
 
-	public void setAccounts(Set<Account> accounts)
+	public void setRoles(Set<Role> roles)
 	{
-		this.accounts = accounts;
-	}
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RolePermission",
-			joinColumns = { @JoinColumn(name = "roleId", nullable = false, updatable = false) },
-			inverseJoinColumns = { @JoinColumn(name = "permissionId", nullable = false, updatable = false) })
-	public Set<Permission> getPermissions()
-	{
-		return permissions;
-	}
-
-	public void setPermissions(Set<Permission> permissions)
-	{
-		this.permissions = permissions;
+		this.roles = roles;
 	}
 }

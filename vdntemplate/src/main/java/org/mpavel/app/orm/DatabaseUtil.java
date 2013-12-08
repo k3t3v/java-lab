@@ -30,9 +30,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
-import org.mpavel.app.model.Account;
-import org.mpavel.app.model.Permission;
-import org.mpavel.app.model.Role;
+import org.mpavel.app.domain.Account;
+import org.mpavel.app.domain.Permission;
+import org.mpavel.app.domain.Role;
 import org.mpavel.app.utils.ApplicationLogger;
 
 /**

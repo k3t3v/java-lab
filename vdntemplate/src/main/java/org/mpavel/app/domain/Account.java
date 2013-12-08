@@ -15,7 +15,7 @@
  * limitations under the License.
  * 
  */
-package org.mpavel.app.model;
+package org.mpavel.app.domain;
 
 import java.util.HashSet;
 import java.util.Set;
