@@ -24,6 +24,7 @@ import org.hibernate.Session;
 import org.mpavel.app.domain.Permission;
 import org.mpavel.app.utils.ApplicationLogger;
 
+import com.google.inject.Inject;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -40,6 +41,7 @@ public class PermissionDAO extends HibernateGenericDAO<Permission> {
 	/**
 	 * @param type
 	 */
+	@Inject
 	public PermissionDAO(TypeLiteral<Permission> type) {
 		super(type);
 	}

@@ -26,6 +26,7 @@ import org.mpavel.app.domain.Permission;
 import org.mpavel.app.domain.Role;
 import org.mpavel.app.utils.ApplicationLogger;
 
+import com.google.inject.Inject;
 import com.google.inject.TypeLiteral;
 
 /**
@@ -42,6 +43,7 @@ public class RoleDAO extends HibernateGenericDAO<Role> {
 	/**
 	 * @param type
 	 */
+	@Inject
 	public RoleDAO(TypeLiteral<Role> type) {
 		super(type);
 	}
