@@ -16,7 +16,7 @@
  */
 package org.mpavel.app;
 
-import org.mpavel.app.orm.DatabaseUtil;
+import org.mpavel.app.data.DatabaseUtil;
 import org.mpavel.app.security.ApplicationSecurity;
 import org.mpavel.app.utils.ApplicationLogger;
 import org.mpavel.app.views.ApplicationView;

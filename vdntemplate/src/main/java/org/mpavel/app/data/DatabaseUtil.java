@@ -14,7 +14,7 @@
  * limitations under the License.
  * 
  */
-package org.mpavel.app.orm;
+package org.mpavel.app.data;
 
 import java.io.Serializable;
 import java.util.HashSet;

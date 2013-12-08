@@ -33,10 +33,10 @@ import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.mpavel.app.data.DatabaseUtil;
 import org.mpavel.app.domain.Account;
 import org.mpavel.app.domain.Permission;
 import org.mpavel.app.domain.Role;
-import org.mpavel.app.orm.DatabaseUtil;
 import org.mpavel.app.utils.ApplicationLogger;
 
 /**
