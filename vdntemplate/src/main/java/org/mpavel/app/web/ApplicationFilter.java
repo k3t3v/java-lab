@@ -40,47 +40,36 @@ import com.google.inject.servlet.GuiceFilter;
 
 /**
  * I...
- *
+ * 
  * @author mpavel
- *
+ * 
  */
-@WebFilter(urlPatterns={"/*"})
-public class ApplicationFilter extends GuiceFilter
-{
-	private static final ApplicationLogger logger = new ApplicationLogger(ApplicationFilter.class);
+@WebFilter(urlPatterns = { "/*" })
+public class ApplicationFilter extends GuiceFilter {
+	private static final ApplicationLogger logger = new ApplicationLogger(
+			ApplicationFilter.class);
 	private static Injector applicationInjector;
 	private static Injector securityInjector;
-	private static Injector dataInjector;
 
-	public static Injector getApplicationInjector()
-	{
+	public static Injector getApplicationInjector() {
 		logger.executionTrace();
 		return applicationInjector;
 	}
 
-	public static Injector getSecurityInjector()
-	{
+	public static Injector getSecurityInjector() {
 		logger.executionTrace();
 		return securityInjector;
 	}
-	
-	public static Injector getDataInjector()
-	{
-		logger.executionTrace();
-		return dataInjector;
-	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException
-	{
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
 		logger.executionTrace();
 		super.doFilter(request, response, chain);
 	}
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException
-	{
+	public void init(FilterConfig filterConfig) throws ServletException {
 		logger.executionTrace();
 
 		if (applicationInjector != null)
@@ -88,17 +77,15 @@ public class ApplicationFilter extends GuiceFilter
 
 		if (securityInjector != null)
 			throw new ServletException("security injector already created");
-		
-		if (dataInjector != null)
-			throw new ServletException("data injector already created");
 
-		 final Realm realm = new ApplicationSecurityRealm();
-		 final SecurityManager securityManager = new DefaultSecurityManager(realm);
-		 SecurityUtils.setSecurityManager(securityManager);
-		
+		final Realm realm = new ApplicationSecurityRealm();
+		final SecurityManager securityManager = new DefaultSecurityManager(
+				realm);
+		SecurityUtils.setSecurityManager(securityManager);
+
 		applicationInjector = Guice.createInjector(new ApplicationModule());
-		securityInjector = Guice.createInjector(new ApplicationSecurityModule());
-		dataInjector = Guice.createInjector(new DataModule());
+		securityInjector = Guice
+				.createInjector(new ApplicationSecurityModule());
 
 		super.init(filterConfig);
 	}

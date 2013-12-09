@@ -16,6 +16,10 @@
  */
 package org.mpavel.app;
 
+import javax.servlet.ServletException;
+
+import org.mpavel.app.data.ApplicationDataInitializer;
+import org.mpavel.app.data.DataModule;
 import org.mpavel.app.data.HibernateUtil;
 import org.mpavel.app.security.ApplicationSecurity;
 import org.mpavel.app.utils.ApplicationLogger;
@@ -23,6 +27,7 @@ import org.mpavel.app.views.ApplicationView;
 import org.mpavel.app.views.LoginView;
 import org.mpavel.app.web.ApplicationFilter;
 
+import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.name.Named;
@@ -43,6 +48,7 @@ import com.vaadin.ui.UI;
 public class ApplicationUI extends UI {
     	private static final ApplicationLogger logger = new ApplicationLogger(ApplicationUI.class);
     	public static final String LOGINVIEW = LoginView.NAME;
+    	//private static Injector dataInjector;
     	
     	@Inject
     	@Named("title")
@@ -51,13 +57,29 @@ public class ApplicationUI extends UI {
     	@Inject(optional = true)
     	@Named("version")
     	private String version = "Vaadin <i>version unknown</i>";
+    	
+    	/*public static Injector getDataInjector()
+    	{
+    		logger.executionTrace();
+    		return dataInjector;
+    	}*/
+
 
     	@Override
     	public void init(VaadinRequest request)
     	{
     		logger.executionTrace();
     		HibernateUtil.getSessionFactory(); // Initialize...
-
+    		
+    		/*if (dataInjector != null)
+    			throw new RuntimeException("data injector already created");
+    		
+    		dataInjector = Guice.createInjector(new DataModule());
+    		
+    		ApplicationDataInitializer.insertAuthData();
+    		
+    		logger.debug("Successfully imported data ........... ");*/
+    		
     		final Navigator navigator = new Navigator(this, this);
     		setNavigator(navigator);
     		
